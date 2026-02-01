@@ -1,10 +1,19 @@
 
+/**
+ * File: BenchmarkSorts.java
+ * Author: Matthew Lukenich
+ * Project: CSMC451 Project 1
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * BenchmarkSorts class that benchmarks the sorting algorithms.
+ */
 public class BenchmarkSorts {
 
     private static final int NUM_RUNS = 40;
@@ -17,6 +26,11 @@ public class BenchmarkSorts {
         }
     }
 
+    /**
+     * Main method to run the benchmark.
+     * 
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         AbstractSort quickSort = new QuickSort();
         AbstractSort mergeSort = new MergeSort();
@@ -27,7 +41,7 @@ public class BenchmarkSorts {
         System.out.println("Warmup complete.");
 
         try (PrintWriter quickWriter = new PrintWriter(new FileWriter("QuickSort.txt"));
-             PrintWriter mergeWriter = new PrintWriter(new FileWriter("MergeSort.txt"))) {
+                PrintWriter mergeWriter = new PrintWriter(new FileWriter("MergeSort.txt"))) {
 
             for (int size : BENCHMARK_SIZES) {
                 StringBuilder quickLine = new StringBuilder();
@@ -59,6 +73,11 @@ public class BenchmarkSorts {
         }
     }
 
+    /*
+     * Performs warmup for the sorting algorithm.
+     * 
+     * @param sorter The sorting algorithm.
+     */
     private static void performWarmup(AbstractSort sorter) {
         // Run enough times to trigger JIT.
         // We use a small size to keep it fast, but enough iterations.
@@ -74,6 +93,17 @@ public class BenchmarkSorts {
         }
     }
 
+    /*
+     * Runs the sorting algorithm and records the results.
+     * 
+     * @param sorter The sorting algorithm.
+     * 
+     * @param data The data to sort.
+     * 
+     * @param line The line to append the results to.
+     * 
+     * @throws UnsortedException If the data is not sorted correctly.
+     */
     private static void runAndRecord(AbstractSort sorter, int[] data, StringBuilder line) throws UnsortedException {
         sorter.startSort();
         sorter.sort(data);
@@ -84,6 +114,13 @@ public class BenchmarkSorts {
         line.append(" ").append(sorter.getCount()).append(" ").append(sorter.getTime());
     }
 
+    /*
+     * Generates random data for the sorting algorithm.
+     * 
+     * @param size The size of the data.
+     * 
+     * @return The random data.
+     */
     private static int[] generateRandomData(int size) {
         Random rand = new Random();
         int[] data = new int[size];
@@ -93,6 +130,13 @@ public class BenchmarkSorts {
         return data;
     }
 
+    /*
+     * Verifies that the data is sorted correctly.
+     * 
+     * @param data The data to verify.
+     * 
+     * @throws UnsortedException If the data is not sorted correctly.
+     */
     private static void verifySorted(int[] data) throws UnsortedException {
         for (int i = 0; i < data.length - 1; i++) {
             if (data[i] > data[i + 1]) {
