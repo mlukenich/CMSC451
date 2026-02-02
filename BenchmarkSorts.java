@@ -2,7 +2,7 @@
 /**
  * File: BenchmarkSorts.java
  * Author: Matthew Lukenich
- * Project: CSMC451 Project 1
+ * Project: CMSC451 Project 1
  */
 
 import java.io.FileWriter;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * BenchmarkSorts class that benchmarks the sorting algorithms.
+ * BenchmarkSorts class that benchmarks the sorting algorithms
  */
 public class BenchmarkSorts {
 
@@ -20,16 +20,15 @@ public class BenchmarkSorts {
     private static final int[] BENCHMARK_SIZES = new int[12];
 
     static {
-        // Sizes: 1000, 2000, ..., 12000
         for (int i = 0; i < 12; i++) {
             BENCHMARK_SIZES[i] = (i + 1) * 1000;
         }
     }
 
     /**
-     * Main method to run the benchmark.
+     * Main method to run the benchmark
      * 
-     * @param args Command line arguments.
+     * @param args Command line arguments
      */
     public static void main(String[] args) {
         AbstractSort quickSort = new QuickSort();
@@ -54,10 +53,7 @@ public class BenchmarkSorts {
                     int[] data = generateRandomData(size);
                     int[] dataCopy = Arrays.copyOf(data, data.length);
 
-                    // QuickSort
                     runAndRecord(quickSort, data, quickLine);
-
-                    // MergeSort
                     runAndRecord(mergeSort, dataCopy, mergeLine);
                 }
 
@@ -74,13 +70,11 @@ public class BenchmarkSorts {
     }
 
     /*
-     * Performs warmup for the sorting algorithm.
+     * Performs warmup for the sorting algorithm
      * 
-     * @param sorter The sorting algorithm.
+     * @param sorter The sorting algorithm
      */
     private static void performWarmup(AbstractSort sorter) {
-        // Run enough times to trigger JIT.
-        // We use a small size to keep it fast, but enough iterations.
         int warmupSize = 100;
         int iterations = 10000;
         int[] dummy = generateRandomData(warmupSize);
@@ -94,15 +88,15 @@ public class BenchmarkSorts {
     }
 
     /*
-     * Runs the sorting algorithm and records the results.
+     * Runs the sorting algorithm and records the results
      * 
-     * @param sorter The sorting algorithm.
+     * @param sorter The sorting algorithm
      * 
-     * @param data The data to sort.
+     * @param data The data to sort
      * 
-     * @param line The line to append the results to.
+     * @param line The line to append the results to
      * 
-     * @throws UnsortedException If the data is not sorted correctly.
+     * @throws UnsortedException If the data is not sorted correctly
      */
     private static void runAndRecord(AbstractSort sorter, int[] data, StringBuilder line) throws UnsortedException {
         sorter.startSort();
@@ -115,11 +109,11 @@ public class BenchmarkSorts {
     }
 
     /*
-     * Generates random data for the sorting algorithm.
+     * Generates random data for the sorting algorithm
      * 
-     * @param size The size of the data.
+     * @param size The size of the data
      * 
-     * @return The random data.
+     * @return The random data
      */
     private static int[] generateRandomData(int size) {
         Random rand = new Random();
@@ -131,11 +125,11 @@ public class BenchmarkSorts {
     }
 
     /*
-     * Verifies that the data is sorted correctly.
+     * Verifies that the data is sorted correctly
      * 
-     * @param data The data to verify.
+     * @param data The data to verify
      * 
-     * @throws UnsortedException If the data is not sorted correctly.
+     * @throws UnsortedException If the data is not sorted correctly
      */
     private static void verifySorted(int[] data) throws UnsortedException {
         for (int i = 0; i < data.length - 1; i++) {

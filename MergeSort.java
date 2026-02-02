@@ -1,14 +1,14 @@
 /**
  * File: MergeSort.java
  * Author: Matthew Lukenich
- * Project: CSMC451 Project 1
+ * Project: CMSC451 Project 1
  * 
  * MergeSort class that sorts an array using the merge sort algorithm.
  */
 public class MergeSort extends AbstractSort {
 
     /*
-     * Source: Standard MergeSort algorithm structure.
+     * Source: Standard MergeSort algorithm structure
      */
 
     @Override
@@ -20,13 +20,13 @@ public class MergeSort extends AbstractSort {
     }
 
     /*
-     * Sorts the given list using the merge sort algorithm.
+     * Sorts the given list using the merge sort algorithm
      * 
-     * @param list The list to sort.
+     * @param list The list to sort
      * 
-     * @param l The left index.
+     * @param l The left index
      * 
-     * @param r The right index.
+     * @param r The right index
      */
     private void mergeSort(int[] list, int l, int r) {
         if (l < r) {
@@ -40,15 +40,15 @@ public class MergeSort extends AbstractSort {
     }
 
     /*
-     * Merges two sorted arrays.
+     * Merges two sorted arrays
      * 
-     * @param list The list to merge.
+     * @param list The list to merge
      * 
-     * @param l The left index.
+     * @param l The left index
      * 
-     * @param m The middle index.
+     * @param m The middle index
      * 
-     * @param r The right index.
+     * @param r The right index
      */
     private void merge(int[] list, int l, int m, int r) {
         int n1 = m - l + 1;
@@ -65,7 +65,6 @@ public class MergeSort extends AbstractSort {
         int i = 0, j = 0;
         int k = l;
         while (i < n1 && j < n2) {
-            // Critical operation: Comparison L[i] <= R[j]
             incrementCount();
             if (L[i] <= R[j]) {
                 list[k] = L[i];

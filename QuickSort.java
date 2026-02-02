@@ -1,9 +1,9 @@
 /**
  * File: QuickSort.java
  * Author: Matthew Lukenich
- * Project: CSMC451 Project 1
+ * Project: CMSC451 Project 1
  * 
- * QuickSort class that sorts an array using the quick sort algorithm.
+ * QuickSort class that sorts an array using the quick sort algorithm
  */
 public class QuickSort extends AbstractSort {
 
@@ -20,13 +20,13 @@ public class QuickSort extends AbstractSort {
     }
 
     /*
-     * Sorts the given list using the quick sort algorithm.
+     * Sorts the given list using the quick sort algorithm
      * 
-     * @param list The list to sort.
+     * @param list The list to sort
      * 
-     * @param low The left index.
+     * @param low The left index
      * 
-     * @param high The right index.
+     * @param high The right index
      */
     private void quickSort(int[] list, int low, int high) {
         if (low < high) {
@@ -37,31 +37,28 @@ public class QuickSort extends AbstractSort {
     }
 
     /*
-     * Partitions the given list using the quick sort algorithm.
+     * Partitions the given list using the quick sort algorithm
      * 
-     * @param list The list to partition.
+     * @param list The list to partition
      * 
-     * @param low The left index.
+     * @param low The left index
      * 
-     * @param high The right index.
+     * @param high The right index
      * 
-     * @return The pivot index.
+     * @return The pivot index
      */
     private int partition(int[] list, int low, int high) {
         int pivot = list[high];
         int i = (low - 1);
         for (int j = low; j < high; j++) {
-            // Critical operation: Comparison list[j] < pivot
             incrementCount();
             if (list[j] < pivot) {
                 i++;
-                // Swap list[i] and list[j]
                 int temp = list[i];
                 list[i] = list[j];
                 list[j] = temp;
             }
         }
-        // Swap list[i + 1] and list[high] (or pivot)
         int temp = list[i + 1];
         list[i + 1] = list[high];
         list[high] = temp;

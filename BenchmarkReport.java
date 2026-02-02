@@ -2,7 +2,7 @@
 /**
  * File: BenchmarkReport.java
  * Author: Matthew Lukenich
- * Project: CSMC451 Project 1
+ * Project: CMSC451 Project 1
  */
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * BenchmarkReport class that displays the benchmark results in a GUI.
+ * BenchmarkReport class that displays the benchmark results in a GUI
  */
 public class BenchmarkReport extends JFrame {
 
@@ -24,7 +24,7 @@ public class BenchmarkReport extends JFrame {
     private DefaultTableModel tableModel;
 
     /**
-     * Constructor for BenchmarkReport.
+     * Constructor for BenchmarkReport
      */
     public BenchmarkReport() {
         setTitle("Benchmark Report");
@@ -50,9 +50,9 @@ public class BenchmarkReport extends JFrame {
     }
 
     /*
-     * Opens the benchmark file.
+     * Opens the benchmark file
      * 
-     * @param e The action event.
+     * @param e The action event
      */
     private void openFile(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
@@ -65,9 +65,9 @@ public class BenchmarkReport extends JFrame {
     }
 
     /*
-     * Processes the benchmark file.
+     * Processes the benchmark file
      * 
-     * @param file The benchmark file.
+     * @param file The benchmark file
      */
     private void processFile(File file) {
         tableModel.setRowCount(0); // Clear existing data
@@ -82,7 +82,7 @@ public class BenchmarkReport extends JFrame {
                 String[] parts = line.trim().split("\\s+");
 
                 // First part is size
-                // Check if line format is valid (size + 40 pairs = 81 tokens)
+                // Check if line format is valid size + 40 pairs = 81 tokens
                 if (parts.length < 2)
                     continue;
 
@@ -123,11 +123,11 @@ public class BenchmarkReport extends JFrame {
     }
 
     /*
-     * Calculates the mean of a list of values.
+     * Calculates the mean of a list of values
      * 
-     * @param values The list of values.
+     * @param values The list of values
      * 
-     * @return The mean of the values.
+     * @return The mean of the values
      */
     private double calculateMean(List<Long> values) {
         if (values.isEmpty())
@@ -139,13 +139,13 @@ public class BenchmarkReport extends JFrame {
     }
 
     /*
-     * Calculates the coefficient of variation of a list of values.
+     * Calculates the coefficient of variation of a list of values
      * 
-     * @param values The list of values.
+     * @param values The list of values
      * 
-     * @param mean The mean of the values.
+     * @param mean The mean of the values
      * 
-     * @return The coefficient of variation of the values.
+     * @return The coefficient of variation of the values
      */
     private double calculateCV(List<Long> values, double mean) {
         if (values.isEmpty() || mean == 0)
@@ -159,9 +159,9 @@ public class BenchmarkReport extends JFrame {
     }
 
     /**
-     * Main method to run the benchmark report.
+     * Main method to run the benchmark report
      * 
-     * @param args Command line arguments.
+     * @param args Command line arguments
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

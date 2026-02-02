@@ -1,9 +1,9 @@
 /**
  * File: AbstractSort.java
  * Author: Matthew Lukenich
- * Project: CSMC451 Project 1
+ * Project: CMSC451 Project 1
  * 
- * AbstractSort class that provides a template for sorting algorithms.
+ * AbstractSort class that provides a template for sorting algorithms
  */
 public abstract class AbstractSort {
     private long count;
@@ -11,14 +11,14 @@ public abstract class AbstractSort {
     private long time;
 
     /**
-     * Sorts the given list using the specified sorting algorithm.
+     * Sorts the given list using the specified sorting algorithm
      * 
-     * @param list The list to sort.
+     * @param list The list to sort
      */
     public abstract void sort(int[] list);
 
     /**
-     * Starts the sorting process.
+     * Starts the sorting process
      */
     protected void startSort() {
         count = 0;
@@ -26,32 +26,32 @@ public abstract class AbstractSort {
     }
 
     /**
-     * Ends the sorting process.
+     * Ends the sorting process
      */
     protected void endSort() {
         time = System.nanoTime() - startTime;
     }
 
     /**
-     * Increments the count.
+     * Increments the count
      */
     protected void incrementCount() {
         count++;
     }
 
     /**
-     * Gets the count.
+     * Gets the count
      * 
-     * @return The count.
+     * @return The count
      */
     public long getCount() {
         return count;
     }
 
     /**
-     * Gets the time it took to sort the list.
+     * Gets the time it took to sort the list
      * 
-     * @return The time it took to sort the list.
+     * @return The time it took to sort the list
      */
     public long getTime() {
         return time;
