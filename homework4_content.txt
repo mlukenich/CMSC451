@@ -1,0 +1,22 @@
+Consider the following directed graph for each of the problems:  
+  
+  
+  
+1. Create a breadth-first search tree on the graph above assuming that the vertices and 
+adjacency lists are listed in alphabetical order.  
+  
+2. Create a depth-first search tree on the graph above assuming that the vertices and 
+adjacency lists are listed in alphabetical order.  
+a. Classify each edge as tree, forward, back or cross edge.  
+b. Label each vertex with its start and finish time.  
+  
+3. Remove all the back edges from the graph above so it becomes a DAG.  
+a. Create a depth-first search tree recording the start and finish times.  
+b. Using those finish times, provide the topological order that is produced.  
+c. Provide one breadth-first topological order for that graph.  
+  
+4. Determine the strongly connected components of the graph above using the algorithm 
+provided in the sample problems.  
+a. Show the final depth-first search of the transpose graph labeled with its start and finish 
+times.  
+b. Identify the strongly connected components based on that search.  
