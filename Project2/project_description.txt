@@ -1,0 +1,33 @@
+CMSC 451 - Project 2: Analysis of Sorting Algorithm Results
+============================================================
+
+Project 2 involves writing an analysis of the results that you obtained in the
+first project. You are to submit a paper that discusses the results of your
+analysis.
+
+Your paper should include the following items:
+
+1. A Brief Introduction of the Sorting Algorithms
+   - How the two algorithms compare, including:
+     o High-level pseudocode for the sorting algorithms
+     o A Big-Θ analysis of the two algorithms
+     o An explanation of your approach to avoiding the problems associated
+       with JVM warm-up
+     o A discussion of the critical operation that you chose to count for
+       each algorithm with an explanation of why you selected it
+
+2. An Analysis of the Results of Your Study
+   - This should include:
+     o A graph of critical operations and execution times for both algorithms
+     o A comparison of the performance of the two algorithms
+     o A comparison of the critical operation results and the actual
+       execution time measurements
+     o A discussion of the significance of the coefficient of variance
+       results and how it reflects the data sensitivity of both algorithms
+     o How your results compare to your Big-Θ analysis
+
+3. A Conclusion
+   - Summarizes the important observations of your study
+
+Note: If for any reason it was necessary to revise the program you submitted in
+Project 1, the revised source code should also be included along with the paper.
