@@ -234,8 +234,7 @@ The CV analysis also reinforces expected sensitivity differences: SelectionSort 
 ### Commands
 
 ```bash
-python3 Project2/analyze_results.py
-python3 Project2/embed_svgs_in_report.py
+make report
 javac CMSC451_Project1_Submission/*.java
 ```
 
@@ -248,7 +247,7 @@ If you need one standalone file that *includes* the SVG graph content, generate:
 using:
 
 ```bash
-python3 Project2/embed_svgs_in_report.py
+make embed
 ```
 
 
