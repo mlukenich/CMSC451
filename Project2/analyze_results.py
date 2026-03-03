@@ -1,6 +1,6 @@
-import math
-import os
 import csv
+import math
+from pathlib import Path
 
 def calculate_mean(values):
     return sum(values) / len(values) if values else 0
@@ -37,10 +37,14 @@ def linear_regression(x_vals, y_vals):
 
 def process_file(file_path):
     data = {}
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
-            parts = list(map(int, line.split()))
-            if not parts: continue
+            stripped = line.strip()
+            if not stripped:
+                continue
+            parts = list(map(int, stripped.split()))
+            if len(parts) < 3 or len(parts) % 2 == 0:
+                raise ValueError(f"Malformed benchmark row in {file_path}: {line!r}")
             size = parts[0]
             counts = []
             times = []
@@ -110,14 +114,14 @@ def generate_svg(filename, title, x_label, y_label, x_data, datasets, log_x=Fals
             
         f.write('</svg>')
 
-# Paths
-base_dir = r"C:\Users\mluke\antigravity_workspace\csmc451-project1"
-data_dir = os.path.join(base_dir, "CMSC451_Project1_Submission")
-out_dir = os.path.join(base_dir, "CSMC451", "Project2")
+# Paths (portable: derive from this script location)
+repo_root = Path(__file__).resolve().parents[1]
+data_dir = repo_root / "CMSC451_Project1_Submission"
+out_dir = repo_root / "Project2"
 
 # Process raw data
-bucket_data = process_file(os.path.join(data_dir, "BucketSort.txt"))
-selection_data = process_file(os.path.join(data_dir, "SelectionSort.txt"))
+bucket_data = process_file(data_dir / "BucketSort.txt")
+selection_data = process_file(data_dir / "SelectionSort.txt")
 
 sizes = sorted(bucket_data.keys())
 summary = []
@@ -151,7 +155,7 @@ for size in sizes:
     })
 
 # Write summary CSV
-with open(os.path.join(out_dir, 'analysis_summary.csv'), 'w', newline='') as f:
+with open(out_dir / 'analysis_summary.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.DictWriter(f, fieldnames=summary[0].keys())
     writer.writeheader()
     writer.writerows(summary)
@@ -179,7 +183,7 @@ for algo, counts, times in [('bucket', b_counts_all, b_times_all), ('selection',
         fits[f'{algo}_time_r2_{model_name}'] = r2_t
 
 # Write fits
-with open(os.path.join(out_dir, 'fit_metrics.txt'), 'w') as f:
+with open(out_dir / 'fit_metrics.txt', 'w', encoding='utf-8') as f:
     for k in sorted(fits.keys()):
         f.write('{}={}\n'.format(k, fits[k]))
     f.write('avg_bucket_cv_count_pct={}\n'.format(calculate_mean([s["bucket_cv_count_pct"] for s in summary])))
@@ -192,14 +196,14 @@ datasets_c = [
     ('BucketSort', '#1f77b4', b_counts_all),
     ('SelectionSort', '#d62728', s_counts_all)
 ]
-generate_svg(os.path.join(out_dir, 'critical_operations.svg'), 'Critical Operations vs Input Size', 'Input Size (n)', 'Count', sizes, datasets_c)
-generate_svg(os.path.join(out_dir, 'critical_operations_log.svg'), 'Critical Operations vs Input Size (Log-Log)', 'Input Size (log n)', 'Count (log)', sizes, datasets_c, log_x=True, log_y=True)
+generate_svg(out_dir / 'critical_operations.svg', 'Critical Operations vs Input Size', 'Input Size (n)', 'Count', sizes, datasets_c)
+generate_svg(out_dir / 'critical_operations_log.svg', 'Critical Operations vs Input Size (Log-Log)', 'Input Size (log n)', 'Count (log)', sizes, datasets_c, log_x=True, log_y=True)
 
 datasets_t = [
     ('BucketSort', '#1f77b4', b_times_all),
     ('SelectionSort', '#d62728', s_times_all)
 ]
-generate_svg(os.path.join(out_dir, 'execution_times.svg'), 'Execution Times vs Input Size', 'Input Size (n)', 'Time (ns)', sizes, datasets_t)
-generate_svg(os.path.join(out_dir, 'execution_times_log.svg'), 'Execution Times vs Input Size (Log-Log)', 'Input Size (log n)', 'Time (log ns)', sizes, datasets_t, log_x=True, log_y=True)
+generate_svg(out_dir / 'execution_times.svg', 'Execution Times vs Input Size', 'Input Size (n)', 'Time (ns)', sizes, datasets_t)
+generate_svg(out_dir / 'execution_times_log.svg', 'Execution Times vs Input Size (Log-Log)', 'Input Size (log n)', 'Time (log ns)', sizes, datasets_t, log_x=True, log_y=True)
 
 print("Analysis complete.")
